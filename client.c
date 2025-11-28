@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     // Création du sockaddr_in du serveur
     struct sockaddr_in6 serv_addr;
     serv_addr.sin6_family = AF_INET6;
-    serv_addr.sin6_scope_id = if_nametoindex(argv[3]);
+    serv_addr.sin6_scope_id = (argc == 3) ? if_nametoindex(argv[2]) : if_nametoindex(argv[3]);
     serv_addr.sin6_port = htons(port);
 
     int err = inet_pton(AF_INET6, argv[1], &serv_addr.sin6_addr);
